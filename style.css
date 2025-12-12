@@ -1,0 +1,10 @@
+body {
+  background-color: #111827;  
+  color: white;                
+  font-family: sans-serif;
+}
+
+#log li {
+  padding: 4px 0;
+  border-bottom: 1px solid #2d3748;
+}

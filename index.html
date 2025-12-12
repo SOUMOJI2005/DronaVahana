@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Drona Vahana – Human Counting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="bg-gray-900 text-white min-h-screen">
+
+  <header class="bg-gray-800 p-4 text-center shadow-lg">
+    <h1 class="text-2xl font-bold">Drona Vahana</h1>
+    <p class="text-sm text-gray-400">
+      Disaster Management Drone – AI Human Counting
+    </p>
+  </header>
+
+
+  <main class="grid grid-cols-1 md:grid-cols-3 gap-4 p-5">
+
+
+    <section class="bg-gray-800 rounded-2xl p-4 shadow-xl md:col-span-2">
+      <h2 class="text-xl font-semibold mb-3">Live Human Detection & Counting</h2>
+
+      <div class="relative w-full h-64">
+   
+        <video
+          id="liveVideo"
+          autoplay
+          playsinline
+          class="absolute inset-0 w-full h-64 object-cover rounded-xl border border-gray-700 bg-black">
+        </video>
+
+        <canvas
+          id="liveCanvas"
+          class="absolute inset-0 w-full h-64 pointer-events-none rounded-xl">
+        </canvas>
+
+      </div>
+
+      <p class="text-xs text-gray-400 mt-2">
+        Allow camera access. System will detect humans in real time.
+      </p>
+    </section>
+    <section class="bg-gray-800 rounded-2xl p-4 shadow-xl">
+      <h2 class="text-xl font-semibold mb-3">Drone Status</h2>
+      <div class="space-y-3 text-sm">
+        <div class="flex justify-between"><span>Connection:</span><span id="status">Disconnected</span></div>
+        <div class="flex justify-between"><span>Battery:</span><span id="battery">--%</span></div>
+        <div class="flex justify-between"><span>Humans Detected:</span><span id="altitude">0</span></div>
+        <div class="flex justify-between"><span>Mode:</span><span id="mode">Manual</span></div>
+      </div>
+    </section>
+    <section class="bg-gray-800 rounded-2xl p-4 shadow-xl">
+      <h2 class="text-xl font-semibold mb-4">Five Payload Control (Pixhawk)</h2>
+
+      <div class="space-y-3 text-sm">
+        <button onclick="sendCommand('P1')" class="w-full bg-blue-600 hover:bg-blue-700 py-2 rounded-xl">Drop Payload 1</button>
+        <button onclick="sendCommand('P2')" class="w-full bg-green-600 hover:bg-green-700 py-2 rounded-xl">Drop Payload 2</button>
+        <button onclick="sendCommand('P3')" class="w-full bg-purple-600 hover:bg-purple-700 py-2 rounded-xl">Drop Payload 3</button>
+        <button onclick="sendCommand('P4')" class="w-full bg-cyan-600 hover:bg-cyan-700 py-2 rounded-xl">Drop Payload 4</button>
+        <button onclick="sendCommand('P5')" class="w-full bg-pink-600 hover:bg-pink-700 py-2 rounded-xl">Drop Payload 5</button>
+        <button onclick="sendCommand('LOCK')" class="w-full bg-yellow-600 hover:bg-yellow-700 py-2 rounded-xl">Lock All Payloads</button>
+        <button onclick="sendCommand('EMERGENCY')" class="w-full bg-red-600 hover:bg-red-700 py-2 rounded-xl">Emergency Stop</button>
+      </div>
+
+    </section>
+    <section class="bg-gray-800 rounded-2xl p-4 shadow-xl md:col-span-2">
+      <h2 class="text-xl font-semibold mb-3">Mission Log</h2>
+      <ul id="log" class="text-sm text-gray-300 space-y-1 max-h-40 overflow-y-auto"></ul>
+    </section>
+
+  </main>
+  <footer class="text-center text-xs text-gray-500 p-4">
+    © 2025 Drona Vahana | AI Human Counting Prototype
+  </footer>
+  <script src="app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.21.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+
+</body>
+</html>
